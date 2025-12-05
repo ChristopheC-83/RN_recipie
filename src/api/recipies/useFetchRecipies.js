@@ -1,21 +1,20 @@
 export function useFetchRecipies() {
   async function getAllRecipies() {
-    const URL_API = "https://api.spoonacular.com/recipes/complexSearch";
-      const KEY_API = "7c382b29b3b8403794083080e98a1f64";
-      const MAX_RESULTS = 30;
+    const BASE_URL = "https://api.spoonacular.com/recipes/complexSearch";
+    const API_KEY = "7c382b29b3b8403794083080e98a1f64";
+    const MAX_PER_PAGE = 30;
+
+    const url = `${BASE_URL}?apiKey=${API_KEY}&number=${MAX_PER_PAGE}`;
+
     try {
-      const response = await fetch(URL_API, {
-          apiKey: KEY_API,
-          number : MAX_RESULTS
-      });
+      const response = await fetch(url);
       const data = await response.json();
-      console.log("data", data.data.results);
+
+      console.log("data", data); // Spoonacular renvoie { results: [...] }
     } catch (error) {
       console.error("Error fetching recipies:", error);
     }
-
-    return [];
   }
 
-  return {};
+  return { getAllRecipies };
 }
