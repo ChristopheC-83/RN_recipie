@@ -18,3 +18,6 @@ export function useFetchRecipies() {
 
   return { getAllRecipies };
 }
+
+
+//  dans mon cas inutile car j'utilise zustand et non redux
